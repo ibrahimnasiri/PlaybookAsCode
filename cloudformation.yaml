@@ -93,6 +93,36 @@ Resources:
         ToPort: 443
         CidrIp: 0.0.0.0/0
 
+#Start of the assignment
+ WebServerIsolationSecurityGroup:  # New Security Group for Isolation
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "Security group for isolated web server"
+      VpcId: !Ref VPC
+      SecurityGroupIngress: []  # No inbound traffic allowed
+      SecurityGroupEgress: []   # No outbound traffic allowed
+
+# Incident Response Playbook Steps:
+#
+# Step 1: Detect Anomaly
+# - Automated monitoring detects anomalous network activity.
+#
+# Step 2: Verify Anomaly
+# - Verify the anomaly and determine if it poses a security threat.
+#
+# Step 3: Isolate Web Server
+# - Update security groups to assign the 'WebServerIsolationSecurityGroup' to the WebServerInstance, isolating it from the network.
+#
+# Step 4: Collect Forensic Data
+# - Collect forensic data from the isolated web server for investigation.
+#
+# Step 5: Analyze and Remediate
+# - Analyze the collected data to determine the root cause and apply necessary remediations.
+#
+# Step 6: Restore Normal Operations
+# - Once the threat is mitigated, revert the security group changes and restore normal operations.
+
+#End of the assignment
 Outputs:
   InstanceId:
     Description: InstanceId of the newly created EC2 instance
